@@ -1,0 +1,35 @@
+{% load core %}
+
+{% if is_paginated %}
+<div class="row">
+    <div class="offset2 span8">
+        <ul class="pager">
+            <li 
+                class="previous{% if not page_obj.has_previous %} disabled{% endif %}"
+                {% if page_obj.has_previous %}
+                    data-page="{{ page_obj.previous_page_number }}"
+                {% endif %}
+            >
+
+                <a{% if page_obj.has_previous %} href="?{% url_replace current_qs 'page' page_obj.previous_page_number%}"{% endif %}>Previous</a>
+
+            </li>
+            {% for page_number in page_obj|page_list %}
+                {% if page_number == page_obj.number %}
+                <li class="page-number">{{ page_number }}</li>
+                {% else %}
+                <li data-page="{{ page_number }}" class="page-number"><a href="?{% url_replace current_qs 'page' page_number %}">{{ page_number }}</a></li>
+                {% endif %}
+                <!-- <li>{{ page_obj.number }} of {{ paginator.num_pages }}</li> -->
+            {% endfor %}
+            <li class="next{% if not page_obj.has_next %} disabled{% endif %}"
+                {% if page_obj.has_next %}
+                    data-page="{{ page_obj.next_page_number }}"
+                {% endif %}
+            >
+                <a{% if page_obj.has_next %} href="?{% url_replace current_qs 'page' page_obj.next_page_number%}"{% endif %}>Next</a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endif %}

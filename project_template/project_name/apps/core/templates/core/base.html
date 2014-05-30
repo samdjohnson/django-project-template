@@ -1,0 +1,30 @@
+{% load bootstrap3 %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Screenshot App</title>
+    <meta name="description" content="Screenshot App">
+    <meta name="author" content="Sam Johnson">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    {% bootstrap_css %}
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    {% include 'core/partials/_nav.html' %}
+    <div class="container">
+    {% block content %}
+    <h1>Hello World</h1>
+    {% endblock %}
+    </div>
+    <!-- Bottom -->
+    <script src="{{ STATIC_URL }}core/js/jquery-1.11.1.min.js"></script>
+    {% bootstrap_javascript %}
+</body>
+</html>
